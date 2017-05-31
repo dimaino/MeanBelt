@@ -1,0 +1,28 @@
+<h1>New Appointment</h1>
+<div id="errors" *ngIf="log_error" >
+  <p *ngFor="let err of log_error" id="err">
+    {{err}}
+
+  </p>
+</div>
+
+<form (submit)="new_appointment()" #formData="ngForm">
+  <p>Date:<input type="date" required [(ngModel)]="new_app.date" #date="ngModel" name="date"><span *ngIf="date.dirty"><span *ngIf="date.errors?.required">Date field is required.</span></span></p>
+  <br>
+  <br>
+
+  <p>Time:<input type="time" required [(ngModel)]="new_app.time" #time="ngModel"  name="time"><span *ngIf="time.dirty"><span *ngIf="time.errors?.required">Time field is required.</span></span></p>
+  <br>
+  <br>
+
+  <p>Complain:<textarea type="text" required [(ngModel)]="new_app.complain" #complain="ngModel" name="complain"></textarea><span *ngIf="complain.dirty"><span *ngIf="complain.errors?.required">Complain field is required.</span></span></p>
+  <br>
+  <br>
+
+  <button type="submit" [disabled]="!formData.form.valid"> Add Appointment</button>
+</form>
+
+<br>
+<br>
+<br>
+<button  [routerLink]="['']" >CANCEL</button>
